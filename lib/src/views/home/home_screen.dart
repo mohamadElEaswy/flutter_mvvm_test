@@ -137,32 +137,40 @@ class _HomeScreenState extends State<HomeScreen> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              itemCount: _medicines.length,
-              itemBuilder: (context, index) => Card(
-                color: Colors.orange[200],
-                margin: const EdgeInsets.all(15),
-                child: ListTile(
-                    title: Text(_medicines[index]['title']),
-                    subtitle: Text(_medicines[index]['description']),
-                    trailing: SizedBox(
-                      width: 100,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () => _showForm(_medicines[index]['id']),
+          : _medicines.isEmpty
+              ? Center(
+                  child: Text(
+                    'No medicines Add Medicine to View it',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _medicines.length,
+                  itemBuilder: (context, index) => Card(
+                    color: Colors.orange[200],
+                    margin: const EdgeInsets.all(15),
+                    child: ListTile(
+                        title: Text(_medicines[index]['title']),
+                        subtitle: Text(_medicines[index]['description']),
+                        trailing: SizedBox(
+                          width: 100,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.edit),
+                                onPressed: () =>
+                                    _showForm(_medicines[index]['id']),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () =>
+                                    _deleteItem(_medicines[index]['id']),
+                              ),
+                            ],
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () =>
-                                _deleteItem(_medicines[index]['id']),
-                          ),
-                        ],
-                      ),
-                    )),
-              ),
-            ),
+                        )),
+                  ),
+                ),
     );
   }
 }
