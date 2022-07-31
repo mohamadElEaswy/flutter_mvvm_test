@@ -29,5 +29,9 @@ class FirestoreDatabase implements Database {
   Future getUserData(String userId) async =>
       await _service.getData(userId: userId).then((value) {
         userModelData = UserModel.fromJson(value.data());
+        CacheHelper.saveData(key: 'name', value: '${userModelData.name}');
+        CacheHelper.saveData(key: 'phone', value: '${userModelData.phone}');
+        CacheHelper.saveData(key: 'email', value: '${userModelData.email}');
+        CacheHelper.saveData(key: 'id', value: '${userModelData.id}');
       });
 }

@@ -25,6 +25,7 @@ class Auth implements AuthBase {
       String email, String password) async {
     final userCredential = await _firebaseAuth.signInWithCredential(
         EmailAuthProvider.credential(email: email, password: password));
+    print(userCredential.user!.uid);
     await firebaseFirestore!.getUserData(userCredential.user!.uid);
     return userCredential.user;
   }

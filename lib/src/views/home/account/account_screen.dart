@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mvvm_test/src/services/sqflite_helper.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../services/auth.dart';
 import '../../../services/cache_helper.dart';
@@ -12,6 +14,8 @@ class AccountScreen extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
+      SQLHelper.deleteDB();
+      CacheHelper.removeAllData();
       await auth.signOut();
     } catch (e) {
       // print(e.toString());

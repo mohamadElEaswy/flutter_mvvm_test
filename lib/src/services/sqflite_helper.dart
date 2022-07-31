@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart' as sql;
+
 class SQLHelper {
   static Future<void> createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE items(
@@ -59,7 +60,7 @@ class SQLHelper {
     };
 
     final result =
-    await db.update('items', data, where: "id = ?", whereArgs: [id]);
+        await db.update('items', data, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
@@ -68,6 +69,15 @@ class SQLHelper {
     final db = await SQLHelper.db();
     try {
       await db.delete("items", where: "id = ?", whereArgs: [id]);
+    } catch (err) {
+      debugPrint("Something went wrong when deleting an item: $err");
+    }
+  }
+
+  static Future<void> deleteDB() async {
+    final db = await SQLHelper.db();
+    try {
+      await db.delete("items");
     } catch (err) {
       debugPrint("Something went wrong when deleting an item: $err");
     }
