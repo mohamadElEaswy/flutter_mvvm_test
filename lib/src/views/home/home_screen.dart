@@ -166,36 +166,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-// class _HomeScreenState extends State<HomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     // final database = Provider.of<Database>(context, listen: false);
-//     // database.jobsStream;
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('home'),
-//         actions: [
-//           IconButton(
-//             onPressed: (){},
-//             icon: const Icon(Icons.add),
-//           ),
-//         ],
-//       ),
-//       body: _buildContents(context),
-//     );
-//   }
-//
-//   Widget _buildContents(BuildContext context) {
-//     // final database = Provider.of<Database>(context, listen: false);
-//     return Container();
-//   }
-//
-//   navigateTo(BuildContext context, Widget newRoute) => Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//           builder: (context) => newRoute,
-//           fullscreenDialog: true,
-//         ),
-//       );
-// }
